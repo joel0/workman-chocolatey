@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Test your packages in a test environment: https://github.com/chocolatey/chocolatey-test-environment -->
+
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <!-- == PACKAGE SPECIFIC SECTION == -->
+    <id>workman</id>
+    <version>1.0.3.40</version>
+    <packageSourceUrl>https://github.com/workman-layout/Workman</packageSourceUrl>
+    <owners>joel0</owners>
+    <!-- ============================== -->
+
+    <!-- == SOFTWARE SPECIFIC SECTION == -->
+    <title>Workman (Install)</title>
+    <authors>OJ Bucao</authors>
+    <!-- projectUrl is required for the community feed -->
+    <projectUrl>https://workmanlayout.org/</projectUrl>
+    <licenseUrl>https://github.com/workman-layout/workman/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <bugTrackerUrl>https://github.com/workman-layout/Workman/issues</bugTrackerUrl>
+    <tags>workman keyboard layout</tags>
+    <summary>Workman keyboard layout originally proposed by OJ Bucao at http://www.workmanlayout.org.</summary>
+    <description>
+      Workman keyboard layouts
+      ========================
+
+      Workman keyboard layout originally proposed by OJ Bucao at http://www.workmanlayout.org.
+
+      When learning cold-turkey, try printing the included keyboard image as a desk reference.
+
+      ## Important design notes
+
+      The original Workman-P proposal by OJ Bucao sought to reverse keys for backtick (`) and brackets ([]), however when considering the Objective-C and PHP programming languages, both make heavy use of the original, primary characters. Swapping them makes those frequent characters more work. **In this repository, only the number keys are reversed** to special characters.
+
+      Some of the original key mapping files written by OJ used Colemak positions for alternate/multi/dead key configurations, therefore all the configurations proposed by OJ on his wordpress blog have been modified and bug-fixed by David Norman and hosted at http://github.com/workman-layout/Workman.
+    </description>
+    <!-- =============================== -->
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

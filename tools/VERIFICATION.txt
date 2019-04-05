@@ -1,0 +1,7 @@
+﻿VERIFICATION
+Verification is intended to assist the Chocolatey moderators and community
+in verifying that this package's contents are trustworthy.
+ 
+The offical Workman binary files are provided on the GitHub repository:
+https://github.com/workman-layout/Workman
+The checksums may be validated by downloading the files from there.
