@@ -15,8 +15,8 @@ $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 #$fileLocation = '\\SHARE_LOCATION\to\INSTALLER_FILE'
 # Community Repo: Use official urls for non-redist binaries or redist where total package size is over 200MB
 # Internal/Organization: Download from internal location (internet sources are unreliable)
-$url        = 'https://github.com/workman-layout/Workman/raw/ca72d49a11622d2729c691268592021f16c872c2/windows/installer/workman-us/wm-us_i386.msi'
-$url64      = 'https://github.com/workman-layout/Workman/raw/ca72d49a11622d2729c691268592021f16c872c2/windows/installer/workman-us/wm-us_amd64.msi'
+$url        = 'https://github.com/workman-layout/Workman/raw/0828483de4b4a435c1f4652185cc3e652f4bac1b/windows/installer/workman-us/wm-us_i386.msi'
+$url64      = 'https://github.com/workman-layout/Workman/raw/0828483de4b4a435c1f4652185cc3e652f4bac1b/windows/installer/workman-us/wm-us_amd64.msi'
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
@@ -32,9 +32,9 @@ $packageArgs = @{
   # To determine checksums, you can get that from the original site if provided. 
   # You can also use checksum.exe (choco install checksum) and use it 
   # e.g. checksum -t sha256 -f path\to\file
-  checksum      = '705A46521FBD0482289CC13459E6BE2E3446C4663C7548E72CE318A921799D08'
+  checksum      = '7E978F51CD680446372C9056CEB774BD0801F2E2438B24D749BC6BD960F7913B'
   checksumType  = 'sha256'
-  checksum64    = '3A21A56A333A46DAC6B42D0E1BAA2E805BF9DA976A0D557C72A0310E5729FDFB'
+  checksum64    = 'EDC4F659D892C6471461C3571F7D823FC845EC71F3B87FB1FA155033C2D7A1DF'
   checksumType64= 'sha256'
 
   # MSI
