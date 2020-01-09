@@ -6,8 +6,8 @@
   <metadata>
     <!-- == PACKAGE SPECIFIC SECTION == -->
     <id>workman</id>
-    <version>1.0.3.40</version>
-    <packageSourceUrl>https://github.com/workman-layout/Workman</packageSourceUrl>
+    <version>1.0.3.20200109</version>
+    <packageSourceUrl>https://github.com/joel0/workman-chocolatey</packageSourceUrl>
     <owners>joel0</owners>
     <!-- ============================== -->
 
@@ -16,6 +16,7 @@
     <authors>OJ Bucao</authors>
     <!-- projectUrl is required for the community feed -->
     <projectUrl>https://workmanlayout.org/</projectUrl>
+    <projectSourceUrl>https://github.com/workman-layout/Workman</projectSourceUrl>
     <licenseUrl>https://github.com/workman-layout/workman/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <bugTrackerUrl>https://github.com/workman-layout/Workman/issues</bugTrackerUrl>
