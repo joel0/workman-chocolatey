@@ -10,21 +10,32 @@ $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 # Internal packages (organizations) or software that has redistribution rights (community repo)
 # - Use `Install-ChocolateyInstallPackage` instead of `Install-ChocolateyPackage`
 #   and put the binaries directly into the tools folder (we call it embedding)
-#$fileLocation = Join-Path $toolsDir 'NAME_OF_EMBEDDED_INSTALLER_FILE'
+$localizedFolder = 'workman-us'
+$hash = '7E978F51CD680446372C9056CEB774BD0801F2E2438B24D749BC6BD960F7913B'
+$hash64 = 'EDC4F659D892C6471461C3571F7D823FC845EC71F3B87FB1FA155033C2D7A1DF'
+if ($(Get-WinUserLanguageList)[0].LanguageTag -eq 'en-GB') {
+    Write-Information "en-GB language detected. Installing UK variant of Workman. US variant is also available."
+    $localizedFolder = 'workman-uk'
+    $hash = '197B853A1E9E5CA69975C978FFE547FB09DE77B227FA60BA60EBD407B5A65C19'
+    $hash64 = 'A4E213EFF22A181A6D666F918359EC4D5599EE93489888386784621C3CCEB444'
+} else {
+    Write-Information "Installing default US variant of Workman. UK variant is also available."
+}
+$fileLocation = Join-Path $toolsDir $localizedFolder'\wm-us_i386.msi'
+$file64Location = Join-Path $toolsDir $localizedFolder'\wm-us_amd64.msi'
 # If embedding binaries increase total nupkg size to over 1GB, use share location or download from urls
 #$fileLocation = '\\SHARE_LOCATION\to\INSTALLER_FILE'
 # Community Repo: Use official urls for non-redist binaries or redist where total package size is over 200MB
 # Internal/Organization: Download from internal location (internet sources are unreliable)
-$url        = 'https://github.com/workman-layout/Workman/raw/0828483de4b4a435c1f4652185cc3e652f4bac1b/windows/installer/workman-us/wm-us_i386.msi'
-$url64      = 'https://github.com/workman-layout/Workman/raw/0828483de4b4a435c1f4652185cc3e652f4bac1b/windows/installer/workman-us/wm-us_amd64.msi'
+#$url        = 'https://github.com/workman-layout/Workman/raw/0828483de4b4a435c1f4652185cc3e652f4bac1b/windows/installer/workman-us/wm-us_i386.msi'
+#$url64      = 'https://github.com/workman-layout/Workman/raw/0828483de4b4a435c1f4652185cc3e652f4bac1b/windows/installer/workman-us/wm-us_amd64.msi'
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
   unzipLocation = $toolsDir
   fileType      = 'MSI' #only one of these: exe, msi, msu
-  url           = $url
-  url64bit      = $url64
-  #file         = $fileLocation
+  file         = $fileLocation
+  file64       = $file64Location
 
   softwareName  = 'Workman (*)' #part or all of the Display Name as you see it in Programs and Features. It should be enough to be unique
 
@@ -32,9 +43,9 @@ $packageArgs = @{
   # To determine checksums, you can get that from the original site if provided. 
   # You can also use checksum.exe (choco install checksum) and use it 
   # e.g. checksum -t sha256 -f path\to\file
-  checksum      = '7E978F51CD680446372C9056CEB774BD0801F2E2438B24D749BC6BD960F7913B'
+  checksum      = $hash
   checksumType  = 'sha256'
-  checksum64    = 'EDC4F659D892C6471461C3571F7D823FC845EC71F3B87FB1FA155033C2D7A1DF'
+  checksum64    = $hash64
   checksumType64= 'sha256'
 
   # MSI
