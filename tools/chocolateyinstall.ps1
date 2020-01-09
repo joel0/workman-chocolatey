@@ -10,29 +10,29 @@ $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 # Internal packages (organizations) or software that has redistribution rights (community repo)
 # - Use `Install-ChocolateyInstallPackage` instead of `Install-ChocolateyPackage`
 #   and put the binaries directly into the tools folder (we call it embedding)
-$localizedFolder = 'workman-us'
-$hash = '7E978F51CD680446372C9056CEB774BD0801F2E2438B24D749BC6BD960F7913B'
-$hash64 = 'EDC4F659D892C6471461C3571F7D823FC845EC71F3B87FB1FA155033C2D7A1DF'
+$localizedFile = 'workman-us\wm-us_i386.msi'
+$localizedFile64 = 'workman-us\wm-us_amd64.msi'
 if ($(Get-WinUserLanguageList)[0].LanguageTag -eq 'en-GB') {
-    Write-Information "en-GB language detected. Installing UK variant of Workman. US variant is also available."
-    $localizedFolder = 'workman-uk'
-    $hash = '197B853A1E9E5CA69975C978FFE547FB09DE77B227FA60BA60EBD407B5A65C19'
-    $hash64 = 'A4E213EFF22A181A6D666F918359EC4D5599EE93489888386784621C3CCEB444'
+    Write-Output "en-GB language detected. Installing UK variant of Workman. US variant is also available."
+    $localizedFile = 'workman-uk\wm-uk_i386.msi'
+    $localizedFile64 = 'workman-uk\wm-uk_amd64.msi'
 } else {
-    Write-Information "Installing default US variant of Workman. UK variant is also available."
+    Write-Output "Installing default US variant of Workman. UK variant is also available."
 }
-$fileLocation = Join-Path $toolsDir $localizedFolder'\wm-us_i386.msi'
-$file64Location = Join-Path $toolsDir $localizedFolder'\wm-us_amd64.msi'
+
+$fileLocation = Join-Path $toolsDir $localizedFile
+$file64Location = Join-Path $toolsDir $localizedFile64
 # If embedding binaries increase total nupkg size to over 1GB, use share location or download from urls
 #$fileLocation = '\\SHARE_LOCATION\to\INSTALLER_FILE'
 # Community Repo: Use official urls for non-redist binaries or redist where total package size is over 200MB
 # Internal/Organization: Download from internal location (internet sources are unreliable)
 #$url        = 'https://github.com/workman-layout/Workman/raw/0828483de4b4a435c1f4652185cc3e652f4bac1b/windows/installer/workman-us/wm-us_i386.msi'
 #$url64      = 'https://github.com/workman-layout/Workman/raw/0828483de4b4a435c1f4652185cc3e652f4bac1b/windows/installer/workman-us/wm-us_amd64.msi'
+Write-Debug "MSI log file will be at `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`""
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
-  unzipLocation = $toolsDir
+  #unzipLocation = $toolsDir
   fileType      = 'MSI' #only one of these: exe, msi, msu
   file         = $fileLocation
   file64       = $file64Location
@@ -43,13 +43,9 @@ $packageArgs = @{
   # To determine checksums, you can get that from the original site if provided. 
   # You can also use checksum.exe (choco install checksum) and use it 
   # e.g. checksum -t sha256 -f path\to\file
-  checksum      = $hash
-  checksumType  = 'sha256'
-  checksum64    = $hash64
-  checksumType64= 'sha256'
 
   # MSI
-  silentArgs    = "/passive" # ALLUSERS=1 DISABLEDESKTOPSHORTCUT=1 ADDDESKTOPICON=0 ADDSTARTMENU=0
+  silentArgs    = "/qn /norestart /l+ `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`"" # ALLUSERS=1 DISABLEDESKTOPSHORTCUT=1 ADDDESKTOPICON=0 ADDSTARTMENU=0
   validExitCodes= @(0, 3010, 1641)
   # OTHERS
   # Uncomment matching EXE type (sorted by most to least common)
@@ -67,7 +63,7 @@ $packageArgs = @{
   #validExitCodes= @(0) #please insert other valid exit codes here
 }
 
-Install-ChocolateyPackage @packageArgs # https://chocolatey.org/docs/helpers-install-chocolatey-package
+Install-ChocolateyInstallPackage @packageArgs # https://chocolatey.org/docs/helpers-install-chocolatey-package
 #Install-ChocolateyZipPackage @packageArgs # https://chocolatey.org/docs/helpers-install-chocolatey-zip-package
 ## If you are making your own internal packages (organizations), you can embed the installer or 
 ## put on internal file share and use the following instead (you'll need to add $file to the above)
