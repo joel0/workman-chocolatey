@@ -18,6 +18,7 @@
     <projectUrl>https://workmanlayout.org/</projectUrl>
     <projectSourceUrl>https://github.com/workman-layout/Workman</projectSourceUrl>
     <licenseUrl>https://github.com/workman-layout/workman/blob/master/LICENSE</licenseUrl>
+    <iconUrl>https://cdn.statically.io/gh/joel0/workman-chocolatey/852d79df/WorkmanIcon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <bugTrackerUrl>https://github.com/workman-layout/Workman/issues</bugTrackerUrl>
     <tags>workman keyboard layout</tags>
@@ -30,6 +31,9 @@
 
       When learning cold-turkey, try printing the keyboard image as a desk reference.
     </description>
+    <releaseNotes>
+      Initial Release
+    </releaseNotes>
     <!-- =============================== -->
   </metadata>
   <files>
