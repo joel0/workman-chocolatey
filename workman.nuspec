@@ -6,7 +6,7 @@
   <metadata>
     <!-- == PACKAGE SPECIFIC SECTION == -->
     <id>workman</id>
-    <version>1.0.3.20200109</version>
+    <version>1.0.3.40</version>
     <packageSourceUrl>https://github.com/joel0/workman-chocolatey</packageSourceUrl>
     <owners>joel0</owners>
     <!-- ============================== -->
